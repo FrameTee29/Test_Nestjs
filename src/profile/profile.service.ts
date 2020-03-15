@@ -59,7 +59,8 @@ export class ProfileService {
     }
 
     deleteProfile(sid: string) {
-        this.profiles = this.profiles.filter(profile => profile.sid !== sid)
+        const found = this.getProfileBySid(sid);
+        this.profiles = this.profiles.filter(profile => profile.sid !== found.sid)
     }
 
     updateProfileStatus(sid: string, status: ProfileStatus) {
