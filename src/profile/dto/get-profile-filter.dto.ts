@@ -1,4 +1,4 @@
-import { ProfileStatus } from "../profile-status.enum";
+import { ProfileStatus } from "../profile.model";
 import { IsOptional, IsIn, IsNotEmpty } from "class-validator";
 
 export class GetProfileFilterDto {

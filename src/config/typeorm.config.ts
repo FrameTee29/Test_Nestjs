@@ -8,7 +8,7 @@ export const typeOrmConfig : TypeOrmModuleOptions = {
         username:'root',
         password:'1234',
         database:'psucoin',
-        entities:[__dirname+'/../**/*.entiti.ts'],
+        entities:[__dirname + '/../**/*.entity{.ts,.js}',],
         synchronize:true,
 
 }

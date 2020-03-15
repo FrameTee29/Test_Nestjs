@@ -1,5 +1,6 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { ProfileStatus } from "./profile-status.enum";
+import { ProfileStatus } from "./profile.model";
+
 
 
 @Entity()
@@ -14,7 +15,6 @@ export class Profile extends BaseEntity {
     @Column()
     description:string;
 
-    @Column()
-    status:ProfileStatus;
+
 
 }

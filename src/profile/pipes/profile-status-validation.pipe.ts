@@ -1,4 +1,4 @@
-import { PipeTransform, ArgumentMetadata, BadRequestException } from "@nestjs/common";
+import { PipeTransform, BadRequestException } from "@nestjs/common";
 import { ProfileStatus } from "../profile.model";
 
 export class ProfileStatusValidationPipe implements PipeTransform{
