@@ -1,20 +1,26 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, Query } from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { Profile ,ProfileStatus} from './profile.model';
+import { Profile, ProfileStatus } from './profile.model';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { stringify } from 'querystring';
+import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
 
 @Controller('profile')
 export class ProfileController {
     constructor(private profileService: ProfileService) { }
 
     @Get()
-    getAllProfile(): Profile[] {
-        return this.profileService.getAllProfile();
+    getAllProfile(@Query() filterDto: GetProfileFilterDto): Profile[] {
+        if (Object.keys(filterDto).length) {
+            return this.profileService.getProfileWithFilters(filterDto);
+        }
+        else {
+            return this.profileService.getAllProfile();
+        }
     }
 
     @Get('/:sid')
-    getProfileBySid(@Param('sid') sid:string){
+    getProfileBySid(@Param('sid') sid: string) {
         return this.profileService.getProfileBySid(sid);
     }
 
@@ -24,12 +30,12 @@ export class ProfileController {
     }
 
     @Delete('/:sid')
-    deleteProfile(@Param('sid') sid: string):void{
+    deleteProfile(@Param('sid') sid: string): void {
         this.profileService.deleteProfile(sid);
     }
 
     @Patch('/:sid/status')
-    updateProfileStatus(@Param('sid') sid:string ,@Body('status') status: ProfileStatus){
-        return this.profileService.updateProfileStatus(sid,status);
+    updateProfileStatus(@Param('sid') sid: string, @Body('status') status: ProfileStatus) {
+        return this.profileService.updateProfileStatus(sid, status);
     }
 }
