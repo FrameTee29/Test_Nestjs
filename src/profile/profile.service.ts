@@ -40,8 +40,8 @@ export class ProfileService {
     //     return profiles;
     // }
 
-    getProfileBySid(sid: number) {
-        const found = this.profileReppository.findOne(sid);
+    async getProfileBySid(sid: number) {
+        const found =await this.profileReppository.findOne(sid);
         if (!found) {
             throw new NotFoundException(`Profile with sid "${sid}" not found`);
         }
