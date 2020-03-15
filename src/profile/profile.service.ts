@@ -41,7 +41,7 @@ export class ProfileService {
     //     return profiles;
     // }
 
-    async getProfileBySid(sid: number) {
+    async getProfileBySid(sid: string) {
         const found = await this.profileReppository.findOne(sid);
         if (!found) {
             throw new NotFoundException(`Profile with sid "${sid}" not found`);
@@ -62,10 +62,12 @@ export class ProfileService {
         }
     }
 
-    // updateProfileStatus(sid: string, status: ProfileStatus) {
-    //     const profile = this.getProfileBySid(sid);
-    //     profile.status = status;
-    //     return profile;
-    // }
+    async updateProfileStatus(sid: string, status: ProfileStatus) {
+        const profile = this.getProfileBySid(sid);
+        (await profile).status = status;
+        (await profile).save();
+
+        return profile;
+    }
 }
 

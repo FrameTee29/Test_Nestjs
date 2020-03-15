@@ -22,7 +22,7 @@ export class ProfileController {
     }
 
     @Get('/:sid')
-    getProfileBySid(@Param('sid',ParseIntPipe) sid:number):Promise<Profile> {
+    getProfileBySid(@Param('sid',ParseIntPipe) sid:string):Promise<Profile> {
         return this.profileService.getProfileBySid(sid);
     }
 
@@ -37,10 +37,10 @@ export class ProfileController {
         this.profileService.deleteProfile(sid);
     }
 
-    // @Patch('/:sid/status')
-    // updateProfileStatus(
-    //     @Param('sid') sid: string,
-    //     @Body('status', ProfileStatusValidationPipe ) status: ProfileStatus) {
-    //     return this.profileService.updateProfileStatus(sid, status);
-    // }
+    @Patch('/:sid/status')
+    updateProfileStatus(
+        @Param('sid') sid: string,
+        @Body('status', ProfileStatusValidationPipe ) status: ProfileStatus):Promise<Profile> {
+        return this.profileService.updateProfileStatus(sid, status);
+    }
 }
