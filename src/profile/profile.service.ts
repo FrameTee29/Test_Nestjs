@@ -13,8 +13,8 @@ export class ProfileService {
     }
 
     createProfile(CreateProfileDto: CreateProfileDto): Profile {
-        const {sid,title,description} = CreateProfileDto;
-
+        const { sid, title, description } = CreateProfileDto;
+        
         const profile: Profile = {
             sid,
             title,
