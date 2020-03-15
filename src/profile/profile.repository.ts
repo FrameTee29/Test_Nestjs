@@ -16,7 +16,7 @@ export class ProfileRepository extends Repository<Profile>{
         }
 
         if(search){
-
+            query.andWhere('profile.title LIKE :search OR profile.description LIKE :search',{search:`%${search}%`}) 
         }
         const profiles = await query.getMany();
         return profiles;
