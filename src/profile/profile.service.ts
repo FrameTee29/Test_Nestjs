@@ -1,4 +1,4 @@
-import { Injectable, Get } from '@nestjs/common';
+import { Injectable, Get, NotFoundException } from '@nestjs/common';
 import { Profile, ProfileStatus } from './profile.model';
 import * as uuid from 'uuid/v1';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -36,7 +36,13 @@ export class ProfileService {
     }
 
     getProfileBySid(sid: string): Profile {
-        return this.profiles.find(profile => profile.sid === sid);
+        const found = this.profiles.find(profile => profile.sid === sid);
+
+        if(!found){
+            throw new NotFoundException(`Profile with sid "${sid}" not found`);
+        }
+
+        return found;
     }
 
     createProfile(CreateProfileDto: CreateProfileDto): Profile {
