@@ -1,7 +1,19 @@
 import { ProfileStatus } from "../profile.model";
+import { IsOptional, IsIn, IsNotEmpty } from "class-validator";
 
-export class GetProfileFilterDto{
-    sid:string;
+export class GetProfileFilterDto {
+    @IsOptional()
+    sid: string;
+
+    @IsOptional()
+    @IsIn([
+        ProfileStatus.OPEN,
+        ProfileStatus.IN_PROGRESS,
+        ProfileStatus.DONE
+    ])
     status: ProfileStatus;
-    search:string;
+
+    @IsOptional()
+    @IsNotEmpty()
+    search: string;
 }
