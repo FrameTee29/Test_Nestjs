@@ -1,12 +1,10 @@
 import { Injectable, Get, NotFoundException } from '@nestjs/common';
-import { Profile, ProfileStatus } from './profile.model';
-import * as uuid from 'uuid/v1';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
 
 @Injectable()
 export class ProfileService {
-    private profiles: Profile[] = [];
+    // private profiles: Profile[] = [];
 
 
     // getAllProfile(): Profile[] {

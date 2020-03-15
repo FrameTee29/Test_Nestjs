@@ -3,7 +3,7 @@ import { ProfileService } from './profile.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
 import { ProfileStatusValidationPipe } from './pipes/profile-status-validation.pipe';
-import { ProfileStatus, Profile } from './profile.model';
+
 
 @Controller('profile')
 export class ProfileController {

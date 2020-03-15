@@ -1,5 +1,5 @@
 import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { ProfileStatus } from "./profile.model";
+import { ProfileStatus } from "./profile-status.enum";
 
 
 @Entity()
