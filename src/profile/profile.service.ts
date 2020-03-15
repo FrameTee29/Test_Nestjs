@@ -28,4 +28,8 @@ export class ProfileService {
         this.profiles.push(profile);
         return profile;
     }
+
+    deleteProfile(sid:string){
+        this.profiles=this.profiles.filter(profile => profile.sid !== sid)
+    }
 }
