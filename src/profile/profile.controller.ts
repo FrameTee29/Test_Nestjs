@@ -10,15 +10,16 @@ import {Profile} from './profile.entity'
 export class ProfileController {
     constructor(private profileService: ProfileService) { }
 
-    // @Get()
-    // getAllProfile(@Query() filterDto: GetProfileFilterDto) {
-    //     if (Object.keys(filterDto).length) {
-    //         return this.profileService.getProfileWithFilters(filterDto);
-    //     }
-    //     else {
-    //         return this.profileService.getAllProfile();
-    //     }
-    // }
+    @Get()
+    getAllProfile(@Query() filterDto: GetProfileFilterDto) {
+        // if (Object.keys(filterDto).length) {
+        //     return this.profileService.getProfileWithFilters(filterDto);
+        // }
+        // else {
+        //     return this.profileService.getAllProfile();
+        // }
+        return this.profileService.getAllProfile();
+    }
 
     @Get('/:sid')
     getProfileBySid(@Param('sid',ParseIntPipe) sid:number):Promise<Profile> {

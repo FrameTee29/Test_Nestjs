@@ -15,9 +15,9 @@ export class ProfileService {
     // private profiles: Profile[] = [];
 
 
-    // getAllProfile(): Profile[] {
-    //     return this.profiles;
-    // }
+    getAllProfile() {
+        return this.profileReppository.find();
+    }
 
     // getProfileWithFilters(filterDto: GetProfileFilterDto) {
     //     const { sid,status, search } = filterDto;
@@ -42,7 +42,7 @@ export class ProfileService {
     // }
 
     async getProfileBySid(sid: number) {
-        const found =await this.profileReppository.findOne(sid);
+        const found = await this.profileReppository.findOne(sid);
         if (!found) {
             throw new NotFoundException(`Profile with sid "${sid}" not found`);
         }
@@ -50,38 +50,16 @@ export class ProfileService {
         return found;
     }
 
-    async CreateProfile(createProfileDto:CreateProfileDto){
+    async CreateProfile(createProfileDto: CreateProfileDto) {
         return this.profileReppository.CreateProfile(createProfileDto);
     }
-    // getProfileBySid(sid: string): Profile {
-    //     const found = this.profiles.find(profile => profile.sid === sid);
 
-    //     if(!found){
-    //         throw new NotFoundException(`Profile with sid "${sid}" not found`);
-    //     }
-
-    //     return found;
-    // }
-
-    // createProfile(CreateProfileDto: CreateProfileDto): Profile {
-    //     const { sid, title, description } = CreateProfileDto;
-
-    //     const profile: Profile = {
-    //         sid,
-    //         title,
-    //         description,
-    //         status: ProfileStatus.OPEN,
-    //     }
-    //     this.profiles.push(profile);
-    //     return profile;
-    // }
-
-    async deleteProfile(sid: string):Promise<void> {
-       const result = await this.profileReppository.delete(sid);
-       console.log(result);
-       if(result.affected === 0){
-           throw new NotFoundException(`Profile with sid "${sid}" not found`)
-       }
+    async deleteProfile(sid: string): Promise<void> {
+        const result = await this.profileReppository.delete(sid);
+        console.log(result);
+        if (result.affected === 0) {
+            throw new NotFoundException(`Profile with sid "${sid}" not found`)
+        }
     }
 
     // updateProfileStatus(sid: string, status: ProfileStatus) {
