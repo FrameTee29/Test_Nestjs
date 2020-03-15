@@ -31,10 +31,10 @@ export class ProfileController {
         return this.profileService.CreateProfile(CreateProfileDto);
     }
 
-    // @Delete('/:sid')
-    // deleteProfile(@Param('sid') sid: string): void {
-    //     this.profileService.deleteProfile(sid);
-    // }
+    @Delete('/:sid')
+    deleteProfile(@Param('sid') sid: string): void {
+        this.profileService.deleteProfile(sid);
+    }
 
     // @Patch('/:sid/status')
     // updateProfileStatus(

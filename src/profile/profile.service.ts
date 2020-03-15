@@ -51,15 +51,7 @@ export class ProfileService {
     }
 
     async CreateProfile(createProfileDto:CreateProfileDto){
-        const {sid,title,description} = createProfileDto;
-        const profile = new Profile();
-        profile.sid=sid;
-        profile.title=title;
-        profile.description=description;
-        profile.status= ProfileStatus.OPEN;
-        await profile.save();
-
-        return profile;
+        return this.profileReppository.CreateProfile(createProfileDto);
     }
     // getProfileBySid(sid: string): Profile {
     //     const found = this.profiles.find(profile => profile.sid === sid);
@@ -84,10 +76,9 @@ export class ProfileService {
     //     return profile;
     // }
 
-    // deleteProfile(sid: string) {
-    //     const found = this.getProfileBySid(sid);
-    //     this.profiles = this.profiles.filter(profile => profile.sid !== found.sid)
-    // }
+    async deleteProfile(sid: string):Promise<void> {
+       const result = await this.profileReppository.delete(sid);
+    }
 
     // updateProfileStatus(sid: string, status: ProfileStatus) {
     //     const profile = this.getProfileBySid(sid);
