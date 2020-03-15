@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { Profile, ProfileStatus } from './profile.model';
 import { CreateProfileDto } from './dto/create-profile.dto';
@@ -25,6 +25,7 @@ export class ProfileController {
     }
 
     @Post()
+    @UsePipes(ValidationPipe)
     createProfile(@Body() CreateProfileDto: CreateProfileDto): Profile {
         return this.profileService.createProfile(CreateProfileDto);
     }
