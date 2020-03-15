@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, PrimaryColumn } from "typeorm";
 import { ProfileStatus } from "./profile.model";
 
 
@@ -6,10 +6,8 @@ import { ProfileStatus } from "./profile.model";
 @Entity()
 export class Profile extends BaseEntity {
 
-    @PrimaryGeneratedColumn()
-    id: number;
 
-    @Column()
+    @PrimaryColumn()
     sid:string;
 
     @Column()

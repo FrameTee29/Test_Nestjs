@@ -78,6 +78,10 @@ export class ProfileService {
 
     async deleteProfile(sid: string):Promise<void> {
        const result = await this.profileReppository.delete(sid);
+       console.log(result);
+       if(result.affected === 0){
+           throw new NotFoundException(`Profile with sid "${sid}" not found`)
+       }
     }
 
     // updateProfileStatus(sid: string, status: ProfileStatus) {

@@ -32,7 +32,7 @@ export class ProfileController {
     }
 
     @Delete('/:sid')
-    deleteProfile(@Param('sid') sid: string): void {
+    deleteProfile(@Param('sid') sid: string) {
         this.profileService.deleteProfile(sid);
     }
 
