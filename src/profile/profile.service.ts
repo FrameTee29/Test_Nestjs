@@ -12,6 +12,10 @@ export class ProfileService {
         return this.profiles;
     }
 
+    getProfileBySid(sid:string):Profile{
+        return this.profiles.find(profile => profile.sid === sid);
+    }
+
     createProfile(CreateProfileDto: CreateProfileDto): Profile {
         const { sid, title, description } = CreateProfileDto;
         
