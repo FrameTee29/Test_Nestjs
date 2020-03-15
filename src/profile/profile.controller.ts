@@ -4,6 +4,7 @@ import { Profile, ProfileStatus } from './profile.model';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { stringify } from 'querystring';
 import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
+import { ProfileStatusValidationPipe } from './pipes/profile-status-validation.pipe';
 
 @Controller('profile')
 export class ProfileController {
@@ -36,7 +37,9 @@ export class ProfileController {
     }
 
     @Patch('/:sid/status')
-    updateProfileStatus(@Param('sid') sid: string, @Body('status') status: ProfileStatus) {
+    updateProfileStatus(
+        @Param('sid') sid: string,
+        @Body('status', ProfileStatusValidationPipe ) status: ProfileStatus) {
         return this.profileService.updateProfileStatus(sid, status);
     }
 }
