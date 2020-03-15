@@ -25,11 +25,11 @@ export class ProfileController {
         return this.profileService.getProfileBySid(sid);
     }
 
-    // @Post()
-    // @UsePipes(ValidationPipe)
-    // createProfile(@Body() CreateProfileDto: CreateProfileDto): Profile {
-    //     return this.profileService.createProfile(CreateProfileDto);
-    // }
+    @Post()
+    @UsePipes(ValidationPipe)
+    createProfile(@Body() CreateProfileDto: CreateProfileDto):Promise<Profile>  {
+        return this.profileService.CreateProfile(CreateProfileDto);
+    }
 
     // @Delete('/:sid')
     // deleteProfile(@Param('sid') sid: string): void {
