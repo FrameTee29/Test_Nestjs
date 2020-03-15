@@ -10,12 +10,17 @@ export class ProfileRepository extends Repository<Profile>{
         const {status,search} = filterDto;
 
         const query = this.createQueryBuilder('profile');
-        const profiles = await query.getMany();
 
+        if(status){
+            query.andWhere('profile.status = :status',{status});
+        }
+
+        if(search){
+
+        }
+        const profiles = await query.getMany();
         return profiles;
     }
-
-
 
     async CreateProfile(createProfileDto:CreateProfileDto):Promise<Profile>{
         const {sid,title,description} = createProfileDto;

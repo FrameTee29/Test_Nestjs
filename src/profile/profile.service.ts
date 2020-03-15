@@ -23,27 +23,6 @@ export class ProfileService {
         
         return this.profileReppository.getProfiles(filterDto);
     }
-    // getProfiles(filterDto: GetProfileFilterDto) {
-    //     const { sid,status, search } = filterDto;
-
-    //     let profiles = this.getAllProfile();
-
-    //     if (sid) {
-    //         profiles = profiles.filter(profile => profile.sid === sid)
-    //     }
-
-    //     if (status) {
-    //         profiles = profiles.filter(profile => profile.status === status)
-    //     }
-
-    //     if (search) {
-    //         profiles = profiles.filter(profile => 
-    //             profile.title.includes(search) || 
-    //             profile.description.includes(search));
-    //     }
-
-    //     return profiles;
-    // }
 
     async getProfileBySid(sid: string) {
         const found = await this.profileReppository.findOne(sid);
