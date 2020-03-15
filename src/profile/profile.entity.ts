@@ -7,7 +7,10 @@ import { ProfileStatus } from "./profile.model";
 export class Profile extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    sid: number;
+    id: number;
+
+    @Column()
+    sid:string;
 
     @Column()
     title:string;

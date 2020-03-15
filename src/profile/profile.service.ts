@@ -1,10 +1,11 @@
 import { Injectable, Get, NotFoundException } from '@nestjs/common';
-import { Profile, ProfileStatus } from './profile.model';
 import * as uuid from 'uuid/v1';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProfileRepository } from './profile.repository';
+import { Profile } from './profile.entity';
+import { ProfileStatus } from './profile.model';
 
 @Injectable()
 export class ProfileService {
@@ -47,6 +48,18 @@ export class ProfileService {
         }
 
         return found;
+    }
+
+    async CreateProfile(createProfileDto:CreateProfileDto){
+        const {sid,title,description} = createProfileDto;
+        const profile = new Profile();
+        profile.sid=sid;
+        profile.title=title;
+        profile.description=description;
+        profile.status= ProfileStatus.OPEN;
+        await profile.save();
+
+        return profile;
     }
     // getProfileBySid(sid: string): Profile {
     //     const found = this.profiles.find(profile => profile.sid === sid);
