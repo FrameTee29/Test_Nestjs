@@ -3,8 +3,8 @@ import { ProfileService } from './profile.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
 import { ProfileStatusValidationPipe } from './pipes/profile-status-validation.pipe';
-import { ProfileStatus} from './profile.model';
-import {Profile} from './profile.entity'
+import { ProfileStatus } from './profile.model';
+import { Profile } from './profile.entity'
 
 @Controller('profile')
 export class ProfileController {
@@ -12,23 +12,18 @@ export class ProfileController {
 
     @Get()
     getAllProfile(@Query() filterDto: GetProfileFilterDto) {
-        // if (Object.keys(filterDto).length) {
-        //     return this.profileService.getProfileWithFilters(filterDto);
-        // }
-        // else {
-        //     return this.profileService.getAllProfile();
-        // }
-        return this.profileService.getAllProfile();
+        return this.profileService.getProfiles(filterDto);
+
     }
 
     @Get('/:sid')
-    getProfileBySid(@Param('sid',ParseIntPipe) sid:string):Promise<Profile> {
+    getProfileBySid(@Param('sid', ParseIntPipe) sid: string): Promise<Profile> {
         return this.profileService.getProfileBySid(sid);
     }
 
     @Post()
     @UsePipes(ValidationPipe)
-    createProfile(@Body() CreateProfileDto: CreateProfileDto):Promise<Profile>  {
+    createProfile(@Body() CreateProfileDto: CreateProfileDto): Promise<Profile> {
         return this.profileService.CreateProfile(CreateProfileDto);
     }
 
@@ -40,7 +35,7 @@ export class ProfileController {
     @Patch('/:sid/status')
     updateProfileStatus(
         @Param('sid') sid: string,
-        @Body('status', ProfileStatusValidationPipe ) status: ProfileStatus):Promise<Profile> {
+        @Body('status', ProfileStatusValidationPipe) status: ProfileStatus): Promise<Profile> {
         return this.profileService.updateProfileStatus(sid, status);
     }
 }

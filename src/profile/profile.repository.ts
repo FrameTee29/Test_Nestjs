@@ -2,9 +2,21 @@ import { Repository, Entity, EntityRepository } from "typeorm";
 import { Profile } from "./profile.entity";
 import { CreateProfileDto } from "./dto/create-profile.dto";
 import { ProfileStatus } from "./profile.model";
+import { GetProfileFilterDto } from "./dto/get-profile-filter.dto";
 
 @EntityRepository(Profile)
 export class ProfileRepository extends Repository<Profile>{
+    async getProfiles(filterDto : GetProfileFilterDto):Promise<Profile[]>{
+        const {status,search} = filterDto;
+
+        const query = this.createQueryBuilder('profile');
+        const profiles = await query.getMany();
+
+        return profiles;
+    }
+
+
+
     async CreateProfile(createProfileDto:CreateProfileDto):Promise<Profile>{
         const {sid,title,description} = createProfileDto;
         const profile = new Profile();

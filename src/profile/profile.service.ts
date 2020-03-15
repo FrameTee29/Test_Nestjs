@@ -12,14 +12,18 @@ export class ProfileService {
     constructor(
         @InjectRepository(ProfileRepository)
         private profileReppository: ProfileRepository) { }
-    // private profiles: Profile[] = [];
+    
 
 
     getAllProfile() {
         return this.profileReppository.find();
     }
 
-    // getProfileWithFilters(filterDto: GetProfileFilterDto) {
+    getProfiles(filterDto : GetProfileFilterDto):Promise<Profile[]>{
+        
+        return this.profileReppository.getProfiles(filterDto);
+    }
+    // getProfiles(filterDto: GetProfileFilterDto) {
     //     const { sid,status, search } = filterDto;
 
     //     let profiles = this.getAllProfile();
