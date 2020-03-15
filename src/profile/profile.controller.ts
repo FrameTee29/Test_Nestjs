@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { Profile } from './profile.model';
+import { Profile ,ProfileStatus} from './profile.model';
 import { CreateProfileDto } from './dto/create-profile.dto';
+import { stringify } from 'querystring';
 
 @Controller('profile')
 export class ProfileController {
@@ -27,4 +28,8 @@ export class ProfileController {
         this.profileService.deleteProfile(sid);
     }
 
+    @Patch('/:sid/status')
+    updateProfileStatus(@Param('sid') sid:string ,@Body('status') status: ProfileStatus){
+        return this.profileService.updateProfileStatus(sid,status);
+    }
 }
