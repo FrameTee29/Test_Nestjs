@@ -1,13 +1,13 @@
-import {IsNotEmpty} from 'class-validator'
+// import {IsNotEmpty} from 'class-validator'
 
 export class CreateProfileDto{
-    @IsNotEmpty()
+    // @IsNotEmpty()
     sid:string;
 
-    @IsNotEmpty()
+    // @IsNotEmpty()
     title:string;
 
-    @IsNotEmpty()
+    // @IsNotEmpty()
     description:string;
 }
 
