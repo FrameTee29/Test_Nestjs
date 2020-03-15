@@ -71,18 +71,35 @@
 // }
 
 
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Profile } from './profile.entity';
+import { CreateProfileDto } from './dto/create-profile.dto';
+import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
 
 @Injectable()
 export class ProfileService {
-  constructor(
-    @Inject('PROFILE_REPOSITORY')
-    private photoRepository: Repository<Profile>,
-  ) {}
+    constructor(@Inject('PROFILE_REPOSITORY') private ProfileRepository: Repository<Profile>, ) { }
 
-  async findAll(): Promise<Profile[]> {
-    return this.photoRepository.find();
-  }
+    async getProfileBySid(sid: number) {
+        const found = await this.ProfileRepository.findOne(sid);
+        if (!found) {
+            throw new NotFoundException(`Profile with sid "${sid}" not found`);
+        }
+
+        return found;
+    }
+
+    createProfile(CreateProfileDto: CreateProfileDto) {
+        const {sid,title,description} = CreateProfileDto;
+        const profile = new Profile();
+    
+
+
+
+    }
+
+    async findAll(): Promise<Profile[]> {
+        return this.ProfileRepository.find();
+    }
 }

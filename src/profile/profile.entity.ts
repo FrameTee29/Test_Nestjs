@@ -1,17 +1,15 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { ProfileStatus } from './profile.model';
+import { Table, Column, Model } from 'sequelize-typescript';
 
-@Entity()
-export class Profile extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    Sid: number;
 
-    @Column()
+@Table
+export class Profile extends Model<Profile> {
+    @Column
+    sid: number;
+
+    @Column
     title:string;
 
-    @Column()
+    @Column
     description:string;
 
-    @Column()
-    status: ProfileStatus;
 }

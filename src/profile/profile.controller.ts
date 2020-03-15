@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Patch, Query, UsePipes, ValidationPipe, ParseIntPipe } from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { Profile, ProfileStatus } from './profile.model';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { stringify } from 'querystring';
 import { GetProfileFilterDto } from './dto/get-profile-filter.dto';
 import { ProfileStatusValidationPipe } from './pipes/profile-status-validation.pipe';
+import { Profile } from './profile.entity';
 
 @Controller('profile')
 export class ProfileController {
@@ -20,10 +20,10 @@ export class ProfileController {
     //     }
     // }
 
-    // @Get('/:sid')
-    // getProfileBySid(@Param('sid') sid: string) {
-    //     return this.profileService.getProfileBySid(sid);
-    // }
+    @Get('/:sid')
+    getProfileBySid(@Param('sid',ParseIntPipe) sid: number): Promise<Profile> {
+        return this.profileService.getProfileBySid(sid);
+    }
 
     // @Post()
     // @UsePipes(ValidationPipe)
