@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ProfileModule } from './profile/profile.module';
-import { DatabaseModule } from './database/database.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeOrmConfig } from './config/typeorm.config';
+
 
 @Module({
-
-
-
-  imports: [ProfileModule, DatabaseModule],
+  imports: [TypeOrmModule.forRoot(typeOrmConfig),
+    ProfileModule],
 })
 export class AppModule {}
