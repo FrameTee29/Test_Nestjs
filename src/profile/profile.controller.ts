@@ -9,36 +9,36 @@ import { ProfileStatus, Profile } from './profile.model';
 export class ProfileController {
     constructor(private profileService: ProfileService) { }
 
-    @Get()
-    getAllProfile(@Query() filterDto: GetProfileFilterDto) {
-        if (Object.keys(filterDto).length) {
-            return this.profileService.getProfileWithFilters(filterDto);
-        }
-        else {
-            return this.profileService.getAllProfile();
-        }
-    }
+    // @Get()
+    // getAllProfile(@Query() filterDto: GetProfileFilterDto) {
+    //     if (Object.keys(filterDto).length) {
+    //         return this.profileService.getProfileWithFilters(filterDto);
+    //     }
+    //     else {
+    //         return this.profileService.getAllProfile();
+    //     }
+    // }
 
-    @Get('/:sid')
-    getProfileBySid(@Param('sid') sid:string) {
-        return this.profileService.getProfileBySid(sid);
-    }
+    // @Get('/:sid')
+    // getProfileBySid(@Param('sid') sid:string) {
+    //     return this.profileService.getProfileBySid(sid);
+    // }
 
-    @Post()
-    @UsePipes(ValidationPipe)
-    createProfile(@Body() CreateProfileDto: CreateProfileDto): Profile {
-        return this.profileService.createProfile(CreateProfileDto);
-    }
+    // @Post()
+    // @UsePipes(ValidationPipe)
+    // createProfile(@Body() CreateProfileDto: CreateProfileDto): Profile {
+    //     return this.profileService.createProfile(CreateProfileDto);
+    // }
 
-    @Delete('/:sid')
-    deleteProfile(@Param('sid') sid: string): void {
-        this.profileService.deleteProfile(sid);
-    }
+    // @Delete('/:sid')
+    // deleteProfile(@Param('sid') sid: string): void {
+    //     this.profileService.deleteProfile(sid);
+    // }
 
-    @Patch('/:sid/status')
-    updateProfileStatus(
-        @Param('sid') sid: string,
-        @Body('status', ProfileStatusValidationPipe ) status: ProfileStatus) {
-        return this.profileService.updateProfileStatus(sid, status);
-    }
+    // @Patch('/:sid/status')
+    // updateProfileStatus(
+    //     @Param('sid') sid: string,
+    //     @Body('status', ProfileStatusValidationPipe ) status: ProfileStatus) {
+    //     return this.profileService.updateProfileStatus(sid, status);
+    // }
 }

@@ -15,6 +15,8 @@ export class Profile extends BaseEntity {
     @Column()
     description:string;
 
+    @Column()
+    status:ProfileStatus;
 
 
 }
